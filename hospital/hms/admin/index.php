@@ -1,27 +1,39 @@
 <?php
 session_start();
 include("include/config.php");
-$response = '';
-
-if (isset(<?php
-session_start();
-include("include/config.php");
 error_reporting(0);
 
 $response = '';
 
 if (isset($_POST['submit'])) {
-    $uname = $_POST['username'];
-    $upassword = $_POST['password'];
+    $uname = trim($_POST['username'] ?? '');
+    $upassword = $_POST['password'] ?? '';
+    $upassword_md5 = md5($upassword);
 
-    $ret = mysqli_query($con, "SELECT * FROM admin WHERE username='$uname' AND password='$upassword'");
-    $num = mysqli_fetch_array($ret);
-    if ($num > 0) {
-        $_SESSION['login'] = $_POST['username'];
-        $_SESSION['id'] = $num['id'];
-        $response = 'success';
+    $stmt = mysqli_prepare($con, "SELECT * FROM admin WHERE username = ?");
+    if ($stmt) {
+        mysqli_stmt_bind_param($stmt, "s", $uname);
+        mysqli_stmt_execute($stmt);
+        $res = mysqli_stmt_get_result($stmt);
+        $num = mysqli_fetch_array($res, MYSQLI_ASSOC);
+
+        $login_ok = false;
+        if ($num) {
+            if ($num['password'] === $upassword || $num['password'] === $upassword_md5 || password_verify($upassword, $num['password'])) {
+                $login_ok = true;
+            }
+        }
+
+        if ($login_ok) {
+            $_SESSION['login'] = $uname;
+            $_SESSION['id'] = $num['id'];
+            $response = 'success';
+        } else {
+            $_SESSION['errmsg'] = "Invalid username or password";
+            $response = 'error';
+        }
     } else {
-        $_SESSION['errmsg'] = "Invalid username or password";
+        $_SESSION['errmsg'] = "Database connection error";
         $response = 'error';
     }
 }

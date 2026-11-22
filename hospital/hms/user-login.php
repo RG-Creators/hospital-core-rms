@@ -1,31 +1,52 @@
 <?php
 session_start();
-include("include/config.php");
-$response = '';
-
-if (isset(<?php
-session_start();
 error_reporting(0);
 include("include/config.php");
 $response = '';
 
 if (isset($_POST['submit'])) {
-    $puname = $_POST['username'];    
-    $ppwd = md5($_POST['password']);
-    $ret = mysqli_query($con, "SELECT * FROM users WHERE email='$puname' AND password='$ppwd'");
-    $num = mysqli_fetch_array($ret);
-    if ($num > 0) {
-        $_SESSION['login'] = $_POST['username'];
-        $_SESSION['id'] = $num['id'];
-        $pid = $num['id'];
-        $uip = $_SERVER['REMOTE_ADDR'];
-        $status = 1;
-        mysqli_query($con, "INSERT INTO userlog(uid, username, userip, status) VALUES('$pid', '$puname', '$uip', '$status')");
-        $response = 'success';
+    $puname = trim($_POST['username'] ?? '');
+    $raw_pass = $_POST['password'] ?? '';
+    $ppwd = md5($raw_pass);
+    
+    $stmt = mysqli_prepare($con, "SELECT * FROM users WHERE email = ?");
+    if ($stmt) {
+        mysqli_stmt_bind_param($stmt, "s", $puname);
+        mysqli_stmt_execute($stmt);
+        $res = mysqli_stmt_get_result($stmt);
+        $num = mysqli_fetch_array($res, MYSQLI_ASSOC);
+        
+        $login_ok = false;
+        if ($num) {
+            if ($num['password'] === $ppwd || password_verify($raw_pass, $num['password']) || $num['password'] === $raw_pass) {
+                $login_ok = true;
+            }
+        }
+        
+        if ($login_ok) {
+            $_SESSION['login'] = $puname;
+            $_SESSION['id'] = $num['id'];
+            $pid = (int)$num['id'];
+            $uip = $_SERVER['REMOTE_ADDR'] ?? '127.0.0.1';
+            $status = 1;
+            
+            $log_stmt = mysqli_prepare($con, "INSERT INTO userlog(uid, username, userip, status) VALUES(?, ?, ?, ?)");
+            if ($log_stmt) {
+                mysqli_stmt_bind_param($log_stmt, "issi", $pid, $puname, $uip, $status);
+                mysqli_stmt_execute($log_stmt);
+            }
+            $response = 'success';
+        } else {
+            $uip = $_SERVER['REMOTE_ADDR'] ?? '127.0.0.1';
+            $status = 0;
+            $log_stmt = mysqli_prepare($con, "INSERT INTO userlog(username, userip, status) VALUES(?, ?, ?)");
+            if ($log_stmt) {
+                mysqli_stmt_bind_param($log_stmt, "ssi", $puname, $uip, $status);
+                mysqli_stmt_execute($log_stmt);
+            }
+            $response = 'error';
+        }
     } else {
-        $uip = $_SERVER['REMOTE_ADDR'];
-        $status = 0;
-        mysqli_query($con, "INSERT INTO userlog(username, userip, status) VALUES('$puname', '$uip', '$status')");
         $response = 'error';
     }
 }
