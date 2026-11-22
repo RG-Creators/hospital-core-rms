@@ -1,4 +1,4 @@
-# Hospital Core RMS � Multi-Role Clinical & Inpatient Management System
+# Hospital Core RMS — Multi-Role Clinical & Inpatient Management System
 
 [![PHP Version](https://img.shields.io/badge/PHP-8.2%2B-777bb4?style=for-the-badge&logo=php&logoColor=white)](https://php.net)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com)
@@ -9,7 +9,7 @@ An enterprise multi-role Hospital Information & Clinic Operations System (HMS/RM
 
 ---
 
-## ?? System Architecture & Multi-Portal Workflow
+## 🏗️ System Architecture & Multi-Portal Workflow
 
 ```
 +--------------------------------------------------------------------------+
@@ -43,7 +43,7 @@ An enterprise multi-role Hospital Information & Clinic Operations System (HMS/RM
 
 ---
 
-## ? Key Capabilities
+## ⚡ Key Capabilities
 
 - **Tri-Portal Architecture**:
   - **Patient Portal**: Self-registration, specialization doctor discovery, real-time slot booking, cancellation, and medical history access.
@@ -55,7 +55,7 @@ An enterprise multi-role Hospital Information & Clinic Operations System (HMS/RM
 
 ---
 
-## ?? Tech Stack
+## 🛠️ Tech Stack
 
 - **Backend**: Core PHP 8.2+ (Parameterized Prepared Statements, RBAC Middlewares)
 - **Frontend**: Responsive Tailwind CSS, Bootstrap 3.3, Remix Icons, Poppins Typography
@@ -63,7 +63,7 @@ An enterprise multi-role Hospital Information & Clinic Operations System (HMS/RM
 
 ---
 
-## ?? Quick Setup & Installation
+## 🚀 Quick Setup & Installation
 
 1. **Clone the Repository**:
    ```bash
@@ -92,5 +92,5 @@ An enterprise multi-role Hospital Information & Clinic Operations System (HMS/RM
 
 ---
 
-## ?? License
+## 📄 License
 This repository is open-sourced under the [MIT License](LICENSE).
