@@ -2,26 +2,6 @@
 
 [![PHP Version](https://img.shields.io/badge/PHP-8.2%2B-777bb4?style=for-the-badge&logo=php&logoColor=white)](https://php.net)
 
-> [!IMPORTANT]
-> **Commercial Intellectual Property Notice & Source Code Sale:**
-> This repository contains a production-ready, proprietary software solution engineered by **Ronit Goswami (RG Creators)**. It is available for commercial acquisition, full IP buyout, or custom enterprise licensing.
-> 
-> - **Asset Classification:** Healthcare & Clinical ERP
-> - **Commercial Valuation / Fair Market Estimate:** **₹75,000 – ₹1,20,000 INR** *(Full Source Code & Commercial Rights)*
-> - **Full IP Buyout & Exclusive Ownership:** **₹1,60,000 INR**
-> - **Target Industry:** Healthcare, Hospitals, Diagnostic Clinics & EMR/EHR Systems
-> - **Handover Deliverables:**
->   - Complete PHP 8.2+ & MySQL Enterprise Hospital Management System source code
->   - Full database migrations, seeders, and normalized schema models
->   - Patient, Doctor, Nurse, Pharmacist, Lab Tech, and Super-Admin role-based dashboards
->   - Appointment booking engine, clinical prescription generator, and lab billing system
->   - Postman API Collection, architectural documentation, and production runbook
->   - 30 days of dedicated technical onboarding and system integration support
-> - **Official Portfolio:** [https://rgcreators.netlify.app](https://rgcreators.netlify.app)
-> - **Acquisition & Licensing Inquiries:** [rgcreatorsofficial@gmail.com](mailto:rgcreatorsofficial@gmail.com)
-
----
-
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com)
 [![MySQL](https://img.shields.io/badge/MySQL-8.0%2B-4479A1?style=for-the-badge&logo=mysql&logoColor=white)](https://mysql.com)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
